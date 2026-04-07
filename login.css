@@ -1,0 +1,194 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Times New Roman', Times, serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(#000000,#7d4f95);
+color:white;
+padding:20px;
+}
+
+/* Login Box */
+
+.login-container{
+background:#111;
+padding:40px;
+border-radius:12px;
+width:100%;
+max-width:350px;
+text-align:center;
+box-shadow:0 0 20px rgba(212,175,55,0.4);
+animation:fadeIn 1s ease;
+}
+
+.login-container h1{
+color:#cf93d8;
+margin-bottom:10px;
+font-size:28px;
+}
+
+.login-container p{
+margin-bottom:20px;
+color:#ccc;
+font-size:14px;
+}
+
+/* Form Group */
+
+.form-group{
+margin-bottom:15px;
+text-align:left;
+}
+
+/* Inputs */
+
+form input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:6px;
+outline:none;
+font-size:14px;
+}
+
+form input:focus{
+border:2px solid #cf93d8;
+}
+
+/* Error Messages */
+
+.error-message{
+display:block;
+color:#ff6b6b;
+font-size:12px;
+margin-top:5px;
+}
+
+/* Button */
+
+button{
+width:100%;
+padding:12px;
+background:#cf93d8;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+margin-top:10px;
+font-weight:bold;
+}
+
+button:hover{
+background:#d9a8e3;
+transform:scale(1.05);
+}
+
+button:active{
+transform:scale(0.99);
+}
+
+/* Link */
+
+a{
+display:block;
+margin-top:15px;
+color:#cf93d8;
+text-decoration:none;
+font-size:14px;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+.auth-links{
+margin-top:18px;
+text-align:center;
+}
+
+.auth-links a{
+display:block;
+color:#cf93d8;
+text-decoration:none;
+font-size:14px;
+margin-top:10px;
+}
+
+.auth-links a:hover{
+text-decoration:underline;
+}
+
+.forgot-link{
+margin-top:0;
+}
+
+.register-text{
+margin:8px 0 0;
+color:#ccc;
+font-size:14px;
+}
+
+.register-link{
+font-size:14px;
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(-20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+body{
+padding:15px;
+}
+
+.login-container{
+max-width:100%;
+padding:35px;
+}
+
+.login-container h1{
+font-size:26px;
+}
+}
+
+@media (max-width:480px){
+.login-container{
+padding:30px 20px;
+}
+
+.login-container h1{
+font-size:24px;
+}
+
+.login-container p{
+font-size:13px;
+}
+
+form input{
+padding:10px;
+}
+
+button{
+padding:10px;
+font-size:14px;
+}
+}

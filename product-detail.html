@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product Details - Luxe Scent</title>
+<link rel="icon" type="image/jpeg" href="Perfume.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-brand {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 24px 20px 8px;
+}
+
+.page-brand a {
+  color: #d3a45b;
+  text-decoration: none;
+  letter-spacing: 4px;
+  font-size: 1.05rem;
+}
+
+.detail-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.product-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info h1 {
+  font-size: 2.5em;
+  color: #cf93d8;
+  margin-bottom: 10px;
+}
+
+.product-info .product-subtitle {
+  font-size: 1.2em;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.product-info .product-price {
+  font-size: 2em;
+  color: #cf93d8;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.product-description {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 30px;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #cf93d8;
+}
+
+.product-details {
+  font-size: 0.95em;
+  line-height: 1.8;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.product-details h3 {
+  color: #cf93d8;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.product-details ul {
+  margin-left: 20px;
+}
+
+.product-details li {
+  margin-bottom: 8px;
+}
+
+.product-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cf93d8;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.quantity-selector button {
+  background: #cf93d8;
+  color: #111;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.quantity-selector button:hover {
+  background: #b373b8;
+}
+
+.quantity-selector input {
+  width: 50px;
+  text-align: center;
+  background: #222;
+  border: none;
+  color: #cf93d8;
+  font-weight: bold;
+}
+
+.add-to-cart-btn {
+  padding: 12px 30px;
+  background: #cf93d8;
+  color: #111;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background: #b373b8;
+  transform: scale(1.05);
+}
+
+.alert {
+  padding: 15px 20px;
+  background: #1a3a1a;
+  color: #4caf50;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: none;
+  border-left: 4px solid #4caf50;
+}
+
+.stories {
+  width: min(1320px, 100%);
+  margin: 10px auto 60px;
+  padding: 0 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.stories-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.stories-header .kicker {
+  color: #d8b16b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.stories-header h2 {
+  color: #f6f1e8;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.stories-header h2 span {
+  color: #d58b59;
+  font-style: italic;
+}
+
+.stories-header .line {
+  width: 48px;
+  height: 2px;
+  background: #d8b16b;
+  margin: 0 auto 16px;
+}
+
+.stories-header .intro {
+  color: #9aa2b2;
+  max-width: 660px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.story-card {
+  background: linear-gradient(145deg, rgba(24, 32, 54, 0.9), rgba(12, 16, 30, 0.92));
+  border: 1px solid rgba(107, 142, 182, 0.35);
+  border-radius: 6px;
+  padding: 30px 28px 24px;
+}
+
+.quote-mark {
+  font-size: 2.5rem;
+  line-height: 1;
+  color: #7aa2d8;
+  margin-bottom: 18px;
+}
+
+.story-text {
+  color: #e3e7f0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  min-height: 182px;
+}
+
+.stars {
+  color: #e2be78;
+  letter-spacing: 3px;
+  margin: 12px 0 16px;
+}
+
+.story-footer {
+  border-top: 1px solid rgba(129, 156, 194, 0.25);
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+  color: #101010;
+  background: #9160c9;
+}
+
+.meta-name {
+  color: #f4f7fd;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.meta-city {
+  color: #8ea0bf;
+  font-size: 0.75rem;
+}
+
+.scent-name {
+  color: #d58b59;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+  letter-spacing: 1.8px;
+}
+
+@media (max-width: 768px) {
+  .page-brand {
+    padding: 18px 16px 0;
+  }
+
+  .detail-section {
+    flex-direction: column;
+    margin: 18px auto 24px;
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .product-image img {
+    max-width: 100%;
+  }
+
+  .product-info h1 {
+    font-size: 1.8em;
+  }
+
+  .product-buttons {
+    flex-direction: column;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+  }
+
+  .stories {
+    padding: 0 16px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .story-text {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-info h1 {
+    font-size: 1.5em;
+  }
+
+  .product-info .product-price {
+    font-size: 1.5em;
+  }
+
+  .product-buttons {
+    flex-direction: column;
+  }
+
+  .stories-header .kicker {
+    letter-spacing: 3px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-brand">
+  <a href="collection1.html">LUXE SCENT</a>
+</div>
+
+<section class="detail-section">
+<div class="product-image">
+<img id="productImage" src="P1.jpg" alt="Product">
+</div>
+
+<div class="product-info">
+<h1 id="productName">Product Name</h1>
+<p class="product-subtitle" id="productSubtitle">Subtitle</p>
+<div class="product-price" id="productPrice">₹5000</div>
+
+<div id="alert" class="alert">✓ Added to Cart!</div>
+
+<div class="product-buttons">
+  <div class="quantity-selector">
+    <button onclick="decreaseQuantity()">-</button>
+    <input type="number" id="quantity" value="1" min="1" max="10" readonly>
+    <button onclick="increaseQuantity()">+</button>
+  </div>
+  <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+
+<div class="product-description" id="productDescription">
+Product description goes here.
+</div>
+
+<div class="product-details">
+<h3>Key Characteristics</h3>
+<ul id="characteristics">
+<li>Premium quality</li>
+</ul>
+
+<h3>Fragrance Profile</h3>
+<ul id="profile">
+<li>Long-lasting</li>
+</ul>
+
+<h3>Best For</h3>
+<ul id="bestFor">
+<li>All occasions</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<section class="stories">
+  <div class="stories-header">
+    <p class="kicker">Customer Stories</p>
+    <h2>Words of <span>Praise</span></h2>
+    <div class="line"></div>
+    <p class="intro" id="storiesIntro">From collectors in Tokyo to artists in Buenos Aires, here is what our community says about Luxe Scent.</p>
+  </div>
+
+  <div class="story-grid" id="storyGrid"></div>
+</section>
+
+<footer>
+<p>© 2026 Luxe Scent - Premium Fragrance Experience</p>
+</footer>
+
+<script>
+const productData = {
+  P1: {
+    name: "Golden Mist",
+    subtitle: "Warm & Sweet",
+    price: 5200,
+    description: "A luxurious blend of golden amber and warm spices that creates an enchanting aura. Golden Mist is perfect for those who appreciate elegance and sophistication. The scent opens with bright citrus notes that gradually transition to a warm, woody base that lingers beautifully on the skin.",
+    characteristics: ["Premium aged ingredients", "Long-lasting formula", "Hypoallergenic", "Cruelty-free"],
+    profile: ["Top: Bergamot & Lemon", "Middle: Vanilla & Sandalwood", "Base: Amber & Musk"],
+    bestFor: ["Evening wear", "Special occasions", "All day use"]
+  },
+  P2: {
+    name: "Royal Essence",
+    subtitle: "Floral & Elegant",
+    price: 4500,
+    description: "Elegance in a bottle. Royal Essence combines delicate floral notes with a sophisticated woody base. This timeless fragrance is designed for the modern woman who values grace and refinement. Perfect for any occasion, from casual days to formal events.",
+    characteristics: ["100% natural botanicals", "Paraben-free", "Long shelf life", "Premium packaging"],
+    profile: ["Top: Rose & Peony", "Middle: Jasmine & Lilly", "Base: Sandalwood & Cedar"],
+    bestFor: ["Daily wear", "Office settings", "Formal events"]
+  },
+  P3: {
+    name: "Velvet Aura",
+    subtitle: "Woody & Bold",
+    price: 4800,
+    description: "Make a statement with Velvet Aura. This bold fragrance combines rich woody notes with mysterious spices. Designed for confident individuals who aren't afraid to stand out. The deep, velvety texture of this scent creates an unforgettable impression.",
+    characteristics: ["Rich woody essence", "Strong projection", "Alcohol-free option", "Professional grade"],
+    profile: ["Top: Black Pepper & Cardamom", "Middle: Cedarwood & Oud", "Base: Vetiver & Musk"],
+    bestFor: ["Evening events", "Bold personalities", "Signature scent"]
+  },
+  P4: {
+    name: "Midnight Oud",
+    subtitle: "Deep & Intense",
+    price: 6000,
+    description: "Embrace the night with Midnight Oud. This intense fragrance features premium oud oil blended with rare spices and dark florals. A luxury choice for connoisseurs who appreciate rare and exotic scents. Every spray is an experience of pure indulgence.",
+    characteristics: ["Premium oud oil", "Rare Indian spices", "Precious wood extracts", "Limited edition"],
+    profile: ["Top: Saffron & Rose", "Middle: Oud & Agarwood", "Base: Amber & Dark Musk"],
+    bestFor: ["Luxury lovers", "Collectors", "Signature scent"]
+  },
+  P5: {
+    name: "Shimmer Bliss",
+    subtitle: "Sparkling & Fresh",
+    price: 5000,
+    description: "Feel the joy of freshness with Shimmer Bliss. Sparkling citrus and green notes create an uplifting, energetic atmosphere. This versatile fragrance is perfect for those who love brightness and positivity in their day. A true celebration in a bottle.",
+    characteristics: ["Energizing blend", "Fresh bergamot", "Green florals", "Morning-to-evening"],
+    profile: ["Top: Grapefruit & Lemon", "Middle: Green Apple & Lily", "Base: Musk & Amber"],
+    bestFor: ["Daily wear", "Sport activities", "Morning freshness"]
+  },
+  P6: {
+    name: "Amber Dream",
+    subtitle: "Warm & Sensual",
+    price: 5500,
+    description: "Succumb to the warmth of Amber Dream. Rich amber notes blend with sensual vanilla and exotic spices to create a dreamy, romantic fragrance. Perfect for intimate moments or when you want to feel absolutely irresistible.",
+    characteristics: ["Sensual formula", "Rich amber resin", "Warm spices", "Romantic essence"],
+    profile: ["Top: Orange Blossom & Vanilla", "Middle: Cinnamon & Clove", "Base: Amber & Tonka"],
+    bestFor: ["Romantic occasions", "Evening wear", "Special dates"]
+  },
+  P7: {
+    name: "Ocean Breeze",
+    subtitle: "Fresh & Crisp",
+    price: 4700,
+    description: "Escape to the coast with Ocean Breeze. This crisp, refreshing fragrance captures the essence of sea spray and wind. Ideal for daytime wear, it brings freshness and clarity to any moment. A perfect companion for active lifestyles.",
+    characteristics: ["Marine accord", "Sea salt notes", "Crisp florals", "Water-resistant"],
+    profile: ["Top: Neroli & Sea Salt", "Middle: Water Lily & Aquatic", "Base: Driftwood & Musk"],
+    bestFor: ["Beach days", "Casual wear", "Sports"]
+  },
+  P8: {
+    name: "Rose Garden",
+    subtitle: "Classic & Timeless",
+    price: 5100,
+    description: "A timeless classic. Rose Garden features the finest rose absolute blended with subtle green notes and a soft woody base. This elegant fragrance never goes out of style and works beautifully on any skin. Sophistication in every spray.",
+    characteristics: ["Bulgarian rose absolute", "Timeless formula", "Skin-friendly", "Heirloom quality"],
+    profile: ["Top: Cyclamen & Green Notes", "Middle: Rose & Geranium", "Base: Sandalwood & Amber"],
+    bestFor: ["All occasions", "Classic lovers", "Timeless wear"]
+  },
+  P9: {
+    name: "Vanilla Twilight",
+    subtitle: "Sweet & Cozy",
+    price: 4900,
+    description: "Wrap yourself in warmth with Vanilla Twilight. This sweet, comforting fragrance combines Madagascar vanilla with warm spices and soft woody notes. Perfect for cozy moments or creating a welcoming presence wherever you go.",
+    characteristics: ["Madagascar vanilla", "Cozy spices", "Soft caramel notes", "Comfort scent"],
+    profile: ["Top: Vanilla & Caramel", "Middle: Cinnamon & Nutmeg", "Base: Cedarwood & Amber"],
+    bestFor: ["Evening relaxation", "Comfort wear", "All year"]
+  },
+  P10: {
+    name: "Sandalwood Serenity",
+    subtitle: "Calming & Woody",
+    price: 5300,
+    description: "Find peace with Sandalwood Serenity. Pure sandalwood oil blended with calming herbs and subtle florals creates a meditative fragrance. Ideal for those seeking tranquility and balance. A truly serene olfactory experience.",
+    characteristics: ["Premium sandalwood", "Calming herbs", "Meditative blend", "Aromatherapy-inspired"],
+    profile: ["Top: Lavender & Green Tea", "Middle: Sandalwood & Violet", "Base: Vetiver & Musk"],
+    bestFor: ["Meditation", "Relaxation", "Calm moments"]
+  },
+  P11: {
+    name: "Citrus Splash",
+    subtitle: "Energizing & Bright",
+    price: 4600,
+    description: "Start your day with Citrus Splash. Vibrant citrus fruits and fresh herbs create an invigorating, cheerful fragrance. Perfect for morning wear or whenever you need an energy boost. This bright, sunny scent lifts your spirits instantly.",
+    characteristics: ["Pure citrus oils", "Energizing blend", "Natural botanicals", "Mood-lifting"],
+    profile: ["Top: Mandarin & Lime", "Middle: Lemon & Yuzu", "Base: Ginger & Musk"],
+    bestFor: ["Morning wear", "Energy boost", "Casual days"]
+  },
+  P12: {
+    name: "Lavender Bliss",
+    subtitle: "Soothing & Floral",
+    price: 4950,
+    description: "Embrace calm with Lavender Bliss. True French lavender blended with soft florals and a hint of vanilla creates a soothing, blissful fragrance. Perfect for daily wear or whenever you need a moment of peace.",
+    characteristics: ["French lavender oil", "Floral notes", "Soothing formula", "Sleep-friendly"],
+    profile: ["Top: Lavender & Bergamot", "Middle: Chamomile & Ylang Ylang", "Base: Vanilla & Amber"],
+    bestFor: ["Daily wear", "Relaxation", "Sleep time"]
+  },
+  P13: {
+    name: "Jasmine Nights",
+    subtitle: "Rich & Exotic",
+    price: 5600,
+    description: "Experience exotic luxury with Jasmine Nights. Indian jasmine sambac blended with mysterious oud and exotic spices creates an intoxicating night-time fragrance. For those who crave something truly unique and captivating.",
+    characteristics: ["Indian jasmine sambac", "Exotic spices", "Oud base", "Luxury formula"],
+    profile: ["Top: Rose & Saffron", "Middle: Jasmine & Tuberose", "Base: Oud & Patchouli"],
+    bestFor: ["Night wear", "Special occasions", "Luxury lovers"]
+  },
+  P14: {
+    name: "Musk Charm",
+    subtitle: "Sensual & Warm",
+    price: 5400,
+    description: "Captivate with Musk Charm. A sophisticated blend of warm musk, creamy florals, and woody undertones creates an irresistibly charming fragrance. Subtle yet powerful, it creates an aura of elegance and allure.",
+    characteristics: ["Warm musk", "Creamy florals", "Sensual formula", "Intimate scent"],
+    profile: ["Top: Peach & Rose", "Middle: Orchid & Musk", "Base: Sandalwood & Amber"],
+    bestFor: ["Intimate moments", "Evening wear", "Allure"]
+  },
+  P15: {
+    name: "Peach Elegance",
+    subtitle: "Sweet & Fruity",
+    price: 4850,
+    description: "Peach Elegance opens with juicy peach and soft citrus before melting into a silky floral heart. The dry down is clean, creamy, and lightly musky, giving it a playful but polished finish. It is a bright fragrance with a graceful, feminine trail.",
+    characteristics: ["Juicy fruit opening", "Soft floral heart", "Smooth creamy base", "Everyday friendly"],
+    profile: ["Top: Peach & Mandarin", "Middle: Osmanthus & Jasmine", "Base: Vanilla Musk & Amber"],
+    bestFor: ["Day outings", "Brunch dates", "Warm weather"]
+  },
+  P16: {
+    name: "Cedar Woods",
+    subtitle: "Woody & Masculine",
+    price: 5750,
+    description: "Cedar Woods is built around dry cedarwood, aromatic herbs, and a confident smoky base. It feels grounded, clean, and masculine without becoming heavy. A strong choice for someone who prefers a refined woody signature.",
+    characteristics: ["Dry cedar core", "Aromatic freshness", "Smoky depth", "Confident trail"],
+    profile: ["Top: Bergamot & Sage", "Middle: Cedarwood & Lavender", "Base: Vetiver & Smoke"],
+    bestFor: ["Office wear", "Evening dinners", "Cool seasons"]
+  },
+  P17: {
+    name: "Peppermint Rush",
+    subtitle: "Cool & Fresh",
+    price: 4750,
+    description: "Peppermint Rush delivers an icy mint opening that quickly settles into clean citrus and transparent woods. The scent feels crisp, energetic, and instantly refreshing. It is ideal when you want something cool and uplifting.",
+    characteristics: ["Minty opening", "Cool refreshing effect", "Citrus brightness", "Light clean finish"],
+    profile: ["Top: Peppermint & Lime", "Middle: Green Tea & Neroli", "Base: White Musk & Driftwood"],
+    bestFor: ["Hot days", "Workout recovery", "Fresh daytime wear"]
+  },
+  P18: {
+    name: "Honey Nectar",
+    subtitle: "Sweet & Golden",
+    price: 5150,
+    description: "Honey Nectar is soft, warm, and golden with a honeyed sweetness that never feels sticky. Almond blossom and delicate florals keep it smooth, while a creamy base adds comfort. It is cozy, radiant, and easy to wear.",
+    characteristics: ["Golden sweetness", "Soft creamy texture", "Warm floral balance", "Comforting finish"],
+    profile: ["Top: Honey & Pear", "Middle: Almond Blossom & Rose", "Base: Tonka Bean & Musk"],
+    bestFor: ["Evening gatherings", "Soft romantic wear", "Cool evenings"]
+  },
+  P19: {
+    name: "Bergamot Zest",
+    subtitle: "Citrus & Uplifting",
+    price: 4900,
+    description: "Bergamot Zest is sharp, sparkling, and full of energy. The citrus opening is lifted by green herbs and a subtle amber base, making it feel bright without disappearing too quickly. It is a fresh, optimistic fragrance.",
+    characteristics: ["Sparkling citrus", "Green aromatic lift", "Clean amber base", "Mood brightening"],
+    profile: ["Top: Bergamot & Lemon", "Middle: Basil & Jasmine", "Base: Amber & Cedar"],
+    bestFor: ["Morning wear", "Daily freshness", "Travel"]
+  },
+  P20: {
+    name: "Iris Elegance",
+    subtitle: "Sophisticated & Floral",
+    price: 5650,
+    description: "Iris Elegance is powdery, smooth, and refined, with iris at the center and soft woods underneath. The scent feels polished and understated, like tailored fabric in fragrance form. It is elegant, modern, and quietly luxurious.",
+    characteristics: ["Powdery iris core", "Elegant floral finish", "Soft woody base", "Refined character"],
+    profile: ["Top: Violet Leaf & Pear", "Middle: Iris & Rose", "Base: Cedarwood & White Musk"],
+    bestFor: ["Formal wear", "Work settings", "Minimalist style"]
+  },
+  P21: {
+    name: "Ginger Spice",
+    subtitle: "Warm & Spicy",
+    price: 5050,
+    description: "Ginger Spice blends bright ginger with warm cardamom and a smooth amber dry down. It feels lively at the start and comforting at the end, giving it a balanced spicy warmth. A good fit for cooler weather and bold moods.",
+    characteristics: ["Spicy ginger bite", "Warm aromatic blend", "Smooth amber base", "Energetic character"],
+    profile: ["Top: Ginger & Mandarin", "Middle: Cardamom & Cinnamon", "Base: Amber & Sandalwood"],
+    bestFor: ["Autumn evenings", "Dinner plans", "Spice lovers"]
+  },
+  P22: {
+    name: "Lilac Dreams",
+    subtitle: "Delicate & Floral",
+    price: 4800,
+    description: "Lilac Dreams is airy and gentle, built around lilac petals, soft rose, and a clean musk base. The fragrance feels tender and graceful, with a fresh floral softness that stays close to the skin. It is delicate without being flat.",
+    characteristics: ["Soft lilac floral", "Light airy body", "Fresh clean musks", "Graceful trail"],
+    profile: ["Top: Lilac & Dewy Greens", "Middle: Rose & Peony", "Base: White Musk & Cedar"],
+    bestFor: ["Spring wear", "Casual outings", "Soft feminine looks"]
+  },
+  P23: {
+    name: "Coconut Paradise",
+    subtitle: "Tropical & Sweet",
+    price: 5200,
+    description: "Coconut Paradise smells like sunlit skin and warm air. Creamy coconut, soft vanilla, and a subtle floral touch create a tropical scent that feels relaxed and joyful. It is sweet, smooth, and beach-ready.",
+    characteristics: ["Creamy tropical opening", "Soft vanilla sweetness", "Relaxed beach vibe", "Smooth wearability"],
+    profile: ["Top: Coconut Water & Pineapple", "Middle: Frangipani & Tiare", "Base: Vanilla & Soft Musk"],
+    bestFor: ["Holiday wear", "Beach days", "Summer evenings"]
+  },
+  P24: {
+    name: "Leather Mystique",
+    subtitle: "Bold & Mysterious",
+    price: 5800,
+    description: "Leather Mystique is dark, textured, and sophisticated, pairing leather accord with smoky woods and subtle spice. It has a strong personality and a dramatic finish that feels polished rather than aggressive. A striking scent for confident wearers.",
+    characteristics: ["Leather accord", "Smoky depth", "Spiced woods", "Commanding presence"],
+    profile: ["Top: Black Pepper & Rum", "Middle: Leather & Iris", "Base: Oud & Patchouli"],
+    bestFor: ["Night wear", "Statement moments", "Cool weather"]
+  },
+  P25: {
+    name: "Rose Petals",
+    subtitle: "Romantic & Classic",
+    price: 5100,
+    description: "Rose Petals is a classic rose fragrance with a fresh, petal-like softness. A hint of pear and musk keeps the scent modern and light, while the rose remains elegant and romantic. It feels timeless and easy to love.",
+    characteristics: ["Fresh rose accord", "Romantic softness", "Modern clean finish", "Timeless style"],
+    profile: ["Top: Pear & Pink Pepper", "Middle: Rose & Peony", "Base: Musk & Amber"],
+    bestFor: ["Date nights", "Daily elegance", "Gifting"]
+  },
+  P26: {
+    name: "Tuberose Sublime",
+    subtitle: "Luxurious & Floral",
+    price: 5900,
+    description: "Tuberose Sublime is rich, creamy, and radiant with a lush white-floral heart. The tuberose is opulent but balanced by smooth woods and amber, giving the fragrance depth and glamour. It is luxurious from the first spray.",
+    characteristics: ["Rich white floral", "Creamy floral body", "Amber warmth", "Luxury finish"],
+    profile: ["Top: Neroli & Pear", "Middle: Tuberose & Gardenia", "Base: Amber & Sandalwood"],
+    bestFor: ["Formal events", "Evening glamour", "Special occasions"]
+  },
+  P27: {
+    name: "White Musk",
+    subtitle: "Pure & Clean",
+    price: 5350,
+    description: "White Musk is soft, clean, and quietly comforting, with airy musk, light florals, and a smooth powdery finish. It wears close to the skin and feels effortlessly polished. Ideal for anyone who prefers a fresh, understated scent.",
+    characteristics: ["Clean musk profile", "Soft powdery finish", "Light floral lift", "Skin-close wear"],
+    profile: ["Top: Aldehydes & Lily", "Middle: Jasmine & Iris", "Base: White Musk & Cedar"],
+    bestFor: ["Everyday wear", "Layering", "Minimalist fragrance style"]
+  },
+  P30: {
+    name: "Noir Velvet",
+    subtitle: "Dark & Seductive",
+    price: 6150,
+    description: "Noir Velvet is a dramatic evening fragrance that opens with dark berries and saffron before unfolding into a velvety rose heart. The base blends smoky amber and patchouli for a deep, luxurious trail. It feels bold, modern, and highly addictive.",
+    characteristics: ["Velvety rose accord", "Dark fruity opening", "Smoky amber depth", "Long-lasting projection"],
+    profile: ["Top: Blackcurrant & Saffron", "Middle: Turkish Rose & Plum", "Base: Amber Smoke & Patchouli"],
+    bestFor: ["Evening events", "Date nights", "Statement wear"]
+  },
+  P31: {
+    name: "Crimson Bloom",
+    subtitle: "Floral & Spiced",
+    price: 6250,
+    description: "Crimson Bloom opens with a vibrant red-floral accord wrapped in gentle spice, then settles into a warm amber glow. The composition feels rich and romantic while staying smooth and wearable. It is designed for confident evenings and elegant occasions.",
+    characteristics: ["Rich red floral core", "Soft spicy lift", "Smooth amber warmth", "Long-lasting finish"],
+    profile: ["Top: Red Berries & Pink Pepper", "Middle: Rose Petal & Saffron", "Base: Amber & Sandalwood"],
+    bestFor: ["Date nights", "Festive events", "Evening elegance"]
+  },
+  P32: {
+    name: "Saffron Dusk",
+    subtitle: "Warm & Suede",
+    price: 6350,
+    description: "Saffron Dusk combines warm saffron threads with soft suede textures and creamy woods. It starts luminous and spicy, then deepens into a polished, modern trail. The scent feels refined, bold, and unmistakably premium.",
+    characteristics: ["Saffron-forward opening", "Suede-like texture", "Creamy woody base", "Strong evening presence"],
+    profile: ["Top: Saffron & Mandarin", "Middle: Suede Accord & Iris", "Base: Sandalwood & Amber"],
+    bestFor: ["Night outings", "Formal gatherings", "Signature wear"]
+  },
+  P33: {
+    name: "Moonlit Orchid",
+    subtitle: "Velvety & Elegant",
+    price: 6450,
+    description: "Moonlit Orchid blends velvety orchid petals with ripe pear nectar and a soft amber base. It feels smooth, luminous, and graceful from opening to dry down. A luxurious floral scent for those who prefer elegance with modern depth.",
+    characteristics: ["Velvet floral body", "Juicy fruit opening", "Soft amber dry down", "Elegant projection"],
+    profile: ["Top: Pear Nectar & Bergamot", "Middle: Orchid & Jasmine", "Base: White Amber & Musk"],
+    bestFor: ["Special dinners", "Celebrations", "Romantic evenings"]
+  }
+};
+
+const reviewerPool = [
+  { name: "Valentina M.", city: "Milan, Italy", color: "#9160c9" },
+  { name: "James H.", city: "London, UK", color: "#b07a40" },
+  { name: "Sophie B.", city: "Paris, France", color: "#b64d75" },
+  { name: "Kenji T.", city: "Tokyo, Japan", color: "#4ec6a8" },
+  { name: "Amara R.", city: "Dubai, UAE", color: "#da9852" },
+  { name: "Luca N.", city: "Rome, Italy", color: "#6fa8dc" },
+  { name: "Nora V.", city: "Madrid, Spain", color: "#c36fdd" },
+  { name: "Ivy C.", city: "Singapore", color: "#78c67a" }
+];
+
+const featuredReviewByProduct = {
+  P1: "Golden Mist starts luminous and settles into a warm glow. It wears like evening light on silk.",
+  P2: "Royal Essence feels polished and graceful from the first spray. It reads elegant without trying too hard.",
+  P3: "Velvet Aura has a bold woody edge that stays refined. It is the scent I choose when I want presence.",
+  P4: "Midnight Oud is deep, opulent, and unforgettable. The richness develops beautifully over hours.",
+  P5: "Shimmer Bliss is sparkling and uplifting with a clean finish. It instantly brightens my day.",
+  P6: "Amber Dream is warm and intimate, with a soft sensual trail. It feels luxurious and comforting.",
+  P7: "Ocean Breeze is airy and crisp, like fresh sea wind. Perfect when I want a clean signature.",
+  P8: "Rose Garden is classic rose done right, smooth and timeless. Feminine, graceful, and very wearable.",
+  P9: "Vanilla Twilight is cozy, creamy, and never too sweet. It wraps around you like cashmere.",
+  P10: "Sandalwood Serenity is calm in fragrance form. The woody depth feels centered and meditative.",
+  P11: "Citrus Splash is bright and energetic with a clean citrus burst. It is my favorite morning reset.",
+  P12: "Lavender Bliss is soft, soothing, and beautifully balanced. It gives an instant sense of calm.",
+  P13: "Jasmine Nights is rich, exotic, and dramatic in the best way. The floral heart is truly luxurious.",
+  P14: "Musk Charm is warm, smooth, and quietly magnetic. It lingers close and feels effortlessly chic."
+  ,P15: "Peach Elegance feels juicy and polished, with a soft floral dry down that keeps it elegant.",
+  P16: "Cedar Woods is dry, confident, and clean. The cedar note gives it a grounded, masculine edge.",
+  P17: "Peppermint Rush is icy, bright, and instantly refreshing. It feels crisp from the first spray.",
+  P18: "Honey Nectar is warm and golden with a comforting sweetness. It wears soft but still feels luxurious.",
+  P19: "Bergamot Zest is sparkling and uplifting. The citrus brightness keeps the whole composition energetic.",
+  P20: "Iris Elegance is smooth, polished, and quietly refined. The powdery iris makes it feel tailored.",
+  P21: "Ginger Spice balances brightness and warmth very well. The spice is lively without becoming heavy.",
+  P22: "Lilac Dreams is airy and delicate, with a gentle floral softness that feels calm and graceful.",
+  P23: "Coconut Paradise is creamy, tropical, and relaxed. It feels like a warm-weather escape.",
+  P24: "Leather Mystique is dark and textured with a confident smoky edge. It makes a strong statement.",
+  P25: "Rose Petals is a classic rose fragrance with a soft modern finish. It feels romantic and easy to wear.",
+  P26: "Tuberose Sublime is lush and radiant, with a rich floral heart that feels glamorous and refined.",
+  P27: "White Musk is clean, airy, and understated. It stays close to the skin and feels effortlessly fresh.",
+  P30: "Noir Velvet is dark, smooth, and magnetic. Its berry-rose opening over smoky amber creates a luxurious evening signature.",
+  P31: "Crimson Bloom feels romantic and bold, with red florals wrapped in warm spice and amber depth.",
+  P32: "Saffron Dusk is refined and textural. The saffron-suede blend gives it a luxurious modern edge.",
+  P33: "Moonlit Orchid is smooth, elegant, and luminous. The orchid heart over soft amber feels effortlessly premium."
+};
+
+function noteText(note) {
+  const parts = note.split(':');
+  return parts.length > 1 ? parts.slice(1).join(':').trim() : note;
+}
+
+function productCodeNumber(productId) {
+  const numeric = parseInt(productId.replace('P', ''), 10);
+  return Number.isNaN(numeric) ? 1 : numeric;
+}
+
+function buildReviewsForProduct(productId, product) {
+  const code = productCodeNumber(productId);
+  const top = noteText(product.profile[0]);
+  const middle = noteText(product.profile[1]);
+  const base = noteText(product.profile[2]);
+
+  return [
+    {
+      quote: featuredReviewByProduct[productId] || `${product.name} has beautiful balance and a premium finish that lasts all day.`,
+      stars: 5,
+      reviewer: reviewerPool[(code - 1) % reviewerPool.length]
+    },
+    {
+      quote: `${product.name} opens with ${top.toLowerCase()} and transitions into ${middle.toLowerCase()}. The dry down of ${base.toLowerCase()} is smooth and long lasting.`,
+      stars: 5,
+      reviewer: reviewerPool[code % reviewerPool.length]
+    },
+    {
+      quote: `I wear ${product.name} for ${product.bestFor[0].toLowerCase()} and always get compliments. Its ${product.subtitle.toLowerCase()} character stays clear from first spray to final trail.`,
+      stars: 5,
+      reviewer: reviewerPool[(code + 1) % reviewerPool.length]
+    },
+    {
+      quote: `The quality is obvious: ${product.characteristics[0].toLowerCase()} and ${product.characteristics[1].toLowerCase()}. This perfume feels premium and intentional.`,
+      stars: 5,
+      reviewer: reviewerPool[(code + 2) % reviewerPool.length]
+    }
+  ];
+}
+
+function renderProductReviews(productId, product) {
+  const grid = document.getElementById('storyGrid');
+  const intro = document.getElementById('storiesIntro');
+  const reviews = buildReviewsForProduct(productId, product);
+
+  intro.textContent = `Selected fragrance: ${product.name}. Here is what customers are saying about this perfume.`;
+
+  grid.innerHTML = reviews.map((review) => {
+    const initial = review.reviewer.name.charAt(0).toUpperCase();
+    const stars = '★'.repeat(review.stars);
+    return `
+      <article class="story-card">
+        <div class="quote-mark">&quot;</div>
+        <p class="story-text">${review.quote}</p>
+        <p class="stars">${stars}</p>
+        <div class="story-footer">
+          <div class="person">
+            <div class="avatar" style="background:${review.reviewer.color};">${initial}</div>
+            <div>
+              <p class="meta-name">${review.reviewer.name}</p>
+              <p class="meta-city">${review.reviewer.city}</p>
+            </div>
+          </div>
+          <p class="scent-name">${product.name}</p>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function getProductFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('product') || 'P1';
+}
+
+function getCollectionPageForProduct() {
+  const productId = getProductFromURL();
+  const collection2Products = new Set([
+    'P15', 'P16', 'P17', 'P18', 'P19', 'P20', 'P21', 'P22', 'P23', 'P24', 'P25', 'P26', 'P27',
+    'P32', 'P33'
+  ]);
+
+  return collection2Products.has(productId) ? 'collection2.html' : 'collection1.html';
+}
+
+function initSwipeToCollection() {
+  let tracking = false;
+  let startX = 0;
+  let startY = 0;
+  const minHorizontalDistance = 100;
+  const maxVerticalDistance = 80;
+
+  function shouldIgnoreStart(target) {
+    return !!target.closest('button, a, input, textarea, select');
+  }
+
+  function startGesture(x, y, target) {
+    if (shouldIgnoreStart(target)) {
+      tracking = false;
+      return;
+    }
+
+    tracking = true;
+    startX = x;
+    startY = y;
+  }
+
+  function endGesture(x, y) {
+    if (!tracking) {
+      return;
+    }
+
+    tracking = false;
+    const deltaX = x - startX;
+    const deltaY = Math.abs(y - startY);
+
+    if (deltaX > minHorizontalDistance && deltaY < maxVerticalDistance) {
+      window.location.href = getCollectionPageForProduct();
+    }
+  }
+
+  document.addEventListener('touchstart', (event) => {
+    if (!event.touches || event.touches.length === 0) {
+      return;
+    }
+
+    const touch = event.touches[0];
+    startGesture(touch.clientX, touch.clientY, event.target);
+  }, { passive: true });
+
+  document.addEventListener('touchend', (event) => {
+    if (!event.changedTouches || event.changedTouches.length === 0) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    endGesture(touch.clientX, touch.clientY);
+  }, { passive: true });
+
+  document.addEventListener('mousedown', (event) => {
+    startGesture(event.clientX, event.clientY, event.target);
+  });
+
+  document.addEventListener('mouseup', (event) => {
+    endGesture(event.clientX, event.clientY);
+  });
+}
+
+function displayProduct() {
+  const productId = getProductFromURL();
+  const product = productData[productId] || productData.P1;
+
+  document.getElementById('productImage').src = productId + '.jpg';
+  document.getElementById('productName').textContent = product.name;
+  document.getElementById('productSubtitle').textContent = product.subtitle;
+  document.getElementById('productPrice').textContent = '₹' + product.price;
+  document.getElementById('productDescription').textContent = product.description;
+
+  const characteristicsList = document.getElementById('characteristics');
+  characteristicsList.innerHTML = '';
+  product.characteristics.forEach(char => {
+    const li = document.createElement('li');
+    li.textContent = char;
+    characteristicsList.appendChild(li);
+  });
+
+  const profileList = document.getElementById('profile');
+  profileList.innerHTML = '';
+  product.profile.forEach(prof => {
+    const li = document.createElement('li');
+    li.textContent = prof;
+    profileList.appendChild(li);
+  });
+
+  const bestForList = document.getElementById('bestFor');
+  bestForList.innerHTML = '';
+  product.bestFor.forEach(best => {
+    const li = document.createElement('li');
+    li.textContent = best;
+    bestForList.appendChild(li);
+  });
+
+  renderProductReviews(productId, product);
+}
+
+function increaseQuantity() {
+  const qty = document.getElementById('quantity');
+  if (qty.value < 10) {
+    qty.value = parseInt(qty.value) + 1;
+  }
+}
+
+function decreaseQuantity() {
+  const qty = document.getElementById('quantity');
+  if (qty.value > 1) {
+    qty.value = parseInt(qty.value) - 1;
+  }
+}
+
+function addToCart() {
+  const productId = getProductFromURL();
+  const product = productData[productId] || productData.P1;
+  const quantity = parseInt(document.getElementById('quantity').value);
+  const productImage = productId + '.jpg';
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const existingItem = cart.find(item => item.productId === productId);
+  if (existingItem) {
+    existingItem.quantity += quantity;
+    if (!existingItem.image) {
+      existingItem.image = productImage;
+    }
+  } else {
+    cart.push({
+      productId: productId,
+      name: product.name,
+      price: product.price,
+      image: productImage,
+      quantity: quantity
+    });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  const alert = document.getElementById('alert');
+  alert.style.display = 'block';
+  setTimeout(() => {
+    alert.style.display = 'none';
+  }, 2000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  displayProduct();
+  initSwipeToCollection();
+});
+</script>
+
+</body>
+</html>

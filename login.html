@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - Luxe Scent</title>
+<link rel="icon" type="image/jpeg" href="Perfume.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+<h1>Luxe Scent</h1>
+<p>Login to your account</p>
+
+<form id="loginForm" onsubmit="validateLogin(event)">
+
+<div class="form-group">
+<input type="email" id="email" placeholder="Email Address" required>
+<span class="error-message" id="emailError"></span>
+</div>
+
+<div class="form-group">
+<input type="password" id="password" placeholder="Password" required>
+<span class="error-message" id="passwordError"></span>
+</div>
+
+<button type="submit">Login</button>
+
+</form>
+
+<div class="auth-links">
+<a href="#" class="forgot-link">Forgot Password?</a>
+<p class="register-text">Don't have an account?</p>
+<a href="register.html" class="register-link">Register</a>
+</div>
+
+</div>
+
+<script>
+function validateLogin(event) {
+  event.preventDefault();
+  
+  // Clear previous errors
+  document.getElementById("emailError").textContent = "";
+  document.getElementById("passwordError").textContent = "";
+  
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+  let isValid = true;
+  
+  // Email validation
+  if (email === "") {
+    document.getElementById("emailError").textContent = "Email is required";
+    isValid = false;
+  } else if (!isValidEmail(email)) {
+    document.getElementById("emailError").textContent = "Please enter a valid email";
+    isValid = false;
+  }
+  
+  // Password validation
+  if (password === "") {
+    document.getElementById("passwordError").textContent = "Password is required";
+    isValid = false;
+  } else if (password.length < 6) {
+    document.getElementById("passwordError").textContent = "Password must be at least 6 characters";
+    isValid = false;
+  }
+  
+  if (isValid) {
+    // Check if user is registered with correct credentials
+    let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+    let user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+      // Login successful
+      let username = email.split('@')[0];
+      localStorage.setItem("username", username);
+      localStorage.setItem("userName", user.name || username);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("isLoggedIn", "true");
+      alert("Login successful! Welcome " + user.name);
+      window.location.href = "index.html";
+    } else {
+      // Check if email exists but password is wrong
+      let emailExists = users.some(u => u.email === email);
+      if (emailExists) {
+        document.getElementById("passwordError").textContent = "Incorrect password";
+      } else {
+        document.getElementById("emailError").textContent = "Email not registered. Please register first!";
+      }
+    }
+  }
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+</script>
+
+</body>
+</html>

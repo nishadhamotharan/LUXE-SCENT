@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Success - Luxe Scent</title>
+<link rel="icon" type="image/jpeg" href="Perfume.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="payment.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+<div class="logo">LUXE SCENT</div>
+</header>
+
+<!-- SUCCESS BOX -->
+<div class="success-container">
+
+<div class="checkmark">✔</div>
+
+<h1>Payment Successful</h1>
+<p>Your order has been placed successfully.<br>
+It will be delivered in 5–7 days.</p>
+
+<p class="order-id">Order ID: <span id="orderId"></span></p>
+
+<!-- ORDER SUMMARY -->
+<div class="summary-box">
+
+<h3>Order Summary</h3>
+
+<div id="orderItems"></div>
+
+<div class="total">
+<span>Total</span>
+<span id="totalPrice">₹0</span>
+</div>
+
+</div>
+
+<a href="index.html" class="home-btn">Back to Home</a>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Luxe Scent</p>
+</footer>
+
+<script>
+if (localStorage.getItem("isLoggedIn") !== "true") {
+alert("Please login to access checkout.");
+window.location.href = "login.html";
+}
+
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const orderItems = document.getElementById("orderItems");
+const totalPrice = document.getElementById("totalPrice");
+const orderId = document.getElementById("orderId");
+
+orderId.textContent = "#LS" + Math.floor(1000 + Math.random() * 9000);
+
+if (cart.length === 0) {
+orderItems.innerHTML = "<p class='empty-order'>No items found for this order.</p>";
+totalPrice.textContent = "₹0";
+} else {
+let total = 0;
+
+cart.forEach((item) => {
+const row = document.createElement("div");
+row.className = "item";
+const lineTotal = item.price * item.quantity;
+total += lineTotal;
+
+row.innerHTML = `
+<span>${item.name} x ${item.quantity}</span>
+<span>₹${lineTotal}</span>
+`;
+
+orderItems.appendChild(row);
+});
+
+totalPrice.textContent = "₹" + total;
+
+// Clear cart only after rendering successful payment details.
+localStorage.removeItem("cart");
+}
+</script>
+
+</body>
+</html>

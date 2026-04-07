@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>About - Luxe Scent</title>
+<link rel="icon" type="image/jpeg" href="Perfume.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="about.css">
+</head>
+
+<body>
+
+<header>
+<div class="logo">LUXE SCENT</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="collection1.html">Collection</a>
+<a href="about.html">About</a>
+<a href="cart.html">Cart</a>
+<a href="login.html" id="login-link">Login</a>
+</nav>
+</header>
+
+<section class="about-section">
+
+<div class="about-layout">
+
+<div class="about-story">
+<h1>Founded in 2008</h1>
+<p>
+Luxe Scent was born from a single obsession: the belief that fragrance is not a luxury product but an art form.
+Founded in a small Paris atelier by master perfumer Elise Vernard, our house began with three fragrances and a
+commitment to using only the finest natural and ethically sourced ingredients.
+</p>
+<p>
+Over seventeen years, we have grown into an internationally recognized fragrance house while remaining independent,
+refusing acquisition by the large conglomerates that dominate the industry. Every decision - from ingredient sourcing
+to bottle design - remains guided by artistic integrity rather than market trends.
+</p>
+
+<h2>Our Philosophy</h2>
+<p>
+We believe great fragrance should be the result of patience. Our perfumers spend years composing a single scent,
+allowing it to evolve, breathe, and find its own truth before it ever reaches a bottle. We reject the industry
+practice of fast creation. Some of our fragrances took a decade to complete.
+</p>
+<p>
+Sustainability is woven into everything we do. We work directly with farmers and distillers, paying fair prices,
+investing in replanting programs, and exploring the finest ethical alternatives where wild harvest would threaten
+biodiversity.
+</p>
+</div>
+
+<div class="about-highlights">
+<div class="stat-grid">
+<div class="stat-box">
+<h3>17</h3>
+<span>Years of Craft</span>
+</div>
+<div class="stat-box">
+<h3>42</h3>
+<span>Fragrances</span>
+</div>
+<div class="stat-box">
+<h3>86</h3>
+<span>Countries</span>
+</div>
+<div class="stat-box">
+<h3>3</h3>
+<span>Master Perfumers</span>
+</div>
+</div>
+
+<div class="promise-box">
+<h4>Our Promise</h4>
+<p>
+Every bottle carries our personal guarantee: natural, ethically sourced ingredients wherever possible, no synthetic
+shortcuts that compromise the quality of the finished scent, transparent labeling of all materials, and a lifetime
+refill program so that your bottle never needs to be discarded.
+</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Luxe Scent</p>
+<p>Premium Fragrance Experience</p>
+
+</footer>
+
+<script>
+(function () {
+	const loginLink = document.getElementById("login-link");
+	if (!loginLink) return;
+
+	const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+	if (!isLoggedIn) {
+		loginLink.textContent = "Login";
+		loginLink.href = "login.html";
+		return;
+	}
+
+	const savedName = (
+		localStorage.getItem("userName") ||
+		localStorage.getItem("username") ||
+		localStorage.getItem("userEmail") ||
+		""
+	).trim();
+
+	const firstLetter = savedName.charAt(0).toUpperCase() || "U";
+	loginLink.textContent = firstLetter;
+	loginLink.href = "#";
+
+	const dropdown = document.createElement("div");
+	dropdown.style.position = "fixed";
+	dropdown.style.display = "none";
+	dropdown.style.background = "#111";
+	dropdown.style.border = "1px solid #d3a45b";
+	dropdown.style.padding = "8px 12px";
+	dropdown.style.zIndex = "9999";
+	dropdown.style.minWidth = "90px";
+
+	const logoutLink = document.createElement("a");
+	logoutLink.href = "#";
+	logoutLink.textContent = "Logout";
+	logoutLink.style.color = "#fff";
+	logoutLink.style.textDecoration = "none";
+	dropdown.appendChild(logoutLink);
+	document.body.appendChild(dropdown);
+
+	function closeDropdown() {
+		dropdown.style.display = "none";
+	}
+
+	loginLink.addEventListener("click", function (event) {
+		event.preventDefault();
+		if (dropdown.style.display === "block") {
+			closeDropdown();
+			return;
+		}
+
+		const rect = loginLink.getBoundingClientRect();
+		dropdown.style.top = rect.bottom + 8 + "px";
+		dropdown.style.left = rect.left + "px";
+		dropdown.style.display = "block";
+	});
+
+	logoutLink.addEventListener("click", function (event) {
+		event.preventDefault();
+		localStorage.removeItem("isLoggedIn");
+		localStorage.removeItem("username");
+		localStorage.removeItem("userName");
+		localStorage.removeItem("userEmail");
+		window.location.href = "login.html";
+	});
+
+	document.addEventListener("click", function (event) {
+		if (event.target !== loginLink && !dropdown.contains(event.target)) {
+			closeDropdown();
+		}
+	});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register - Luxe Scent</title>
+<link rel="icon" type="image/jpeg" href="Perfume.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+<h1>Luxe Scent</h1>
+<p>Create your account</p>
+
+<form id="registerForm" onsubmit="validateRegister(event)">
+
+<div class="form-group">
+<input type="text" id="name" placeholder="Full Name" required>
+<span class="error-message" id="nameError"></span>
+</div>
+
+<div class="form-group">
+<input type="email" id="email" placeholder="Email Address" required>
+<span class="error-message" id="emailError"></span>
+</div>
+
+<div class="form-group">
+<input type="password" id="password" placeholder="Password" required>
+<span class="error-message" id="passwordError"></span>
+</div>
+
+<div class="form-group">
+<input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+<span class="error-message" id="confirmError"></span>
+</div>
+
+<button type="submit">Register</button>
+
+</form>
+
+<p class="register-text">
+Already have an account?
+<a href="login.html">Login</a>
+</p>
+
+</div>
+
+<script>
+function validateRegister(event) {
+  event.preventDefault();
+  
+  // Clear previous errors
+  document.getElementById("nameError").textContent = "";
+  document.getElementById("emailError").textContent = "";
+  document.getElementById("passwordError").textContent = "";
+  document.getElementById("confirmError").textContent = "";
+  
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+  let confirmPassword = document.getElementById("confirmPassword").value.trim();
+  let isValid = true;
+  
+  // Name validation
+  if (name === "") {
+    document.getElementById("nameError").textContent = "Full name is required";
+    isValid = false;
+  } else if (name.length < 3) {
+    document.getElementById("nameError").textContent = "Name must be at least 3 characters";
+    isValid = false;
+  }
+  
+  // Email validation
+  if (email === "") {
+    document.getElementById("emailError").textContent = "Email is required";
+    isValid = false;
+  } else if (!isValidEmail(email)) {
+    document.getElementById("emailError").textContent = "Please enter a valid email";
+    isValid = false;
+  } else if (isEmailAlreadyRegistered(email)) {
+    document.getElementById("emailError").textContent = "This email is already registered";
+    isValid = false;
+  }
+  
+  // Password validation
+  if (password === "") {
+    document.getElementById("passwordError").textContent = "Password is required";
+    isValid = false;
+  } else if (password.length < 6) {
+    document.getElementById("passwordError").textContent = "Password must be at least 6 characters";
+    isValid = false;
+  }
+  
+  // Confirm password validation
+  if (confirmPassword === "") {
+    document.getElementById("confirmError").textContent = "Please confirm your password";
+    isValid = false;
+  } else if (password !== confirmPassword) {
+    document.getElementById("confirmError").textContent = "Passwords do not match";
+    isValid = false;
+  }
+  
+  if (isValid) {
+    // Save user registration data
+    let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+    users.push({
+      name: name,
+      email: email,
+      password: password
+    });
+    localStorage.setItem("registeredUsers", JSON.stringify(users));
+    
+    // Login user automatically
+    let username = email.split('@')[0];
+    localStorage.setItem("username", username);
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("isLoggedIn", "true");
+    
+    alert("Registration successful! Welcome " + name);
+    window.location.href = "index.html";
+  }
+}
+
+function isEmailAlreadyRegistered(email) {
+  let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+  return users.some(user => user.email === email);
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+</script>
+
+</body>
+</html>
+</html>
